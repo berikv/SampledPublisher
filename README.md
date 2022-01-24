@@ -5,12 +5,19 @@ publisher.
 
 ## Usage 
 
-This example shows how to sample the value from a "temperature publisher".
-Note that a value is not sampled twice. Thus if the temperature publisher
-didn't post a new value for a given second, that second won't have a line printed.
+This example shows how to sample the value from a "temperature publisher" every
+60 seconds. 
+The temperature sensor may send many values while the timer sends one value
+exectly every 60 seconds. By sampling the timer, the resulting Publisher
+emits the most recent temperature measurement every 60 seconds.
+
+Note that a value is not sampled twice. 
+
+If the temperature sensor does not emit a value during for a complete minute,
+no value is send by the sampled publisher.
 
 ```swift
-    let timer = Timer.publish(every: 1, on: RunLoop.main, in: .default)
+    let timer = Timer.publish(every: 60, on: RunLoop.main, in: .default)
     temperature
         .sample(timer)
         .sink { temperature in print("The temperature is \(temperature)" }
