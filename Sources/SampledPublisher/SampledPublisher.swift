@@ -17,7 +17,7 @@ extension Publisher {
     /// no value is send by the sampled publisher.
     ///
     /// ```
-    ///     let timer = Timer.publish(every: 1, on: RunLoop.main, in: .default)
+    ///     let timer = Timer.publish(every: 60, on: RunLoop.main, in: .default)
     ///     temperature
     ///         .sample(timer)
     ///         .sink { temperature in print("The temperature is \(temperature)" }
