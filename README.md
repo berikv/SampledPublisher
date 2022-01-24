@@ -5,6 +5,17 @@ publisher.
 
 ## Usage 
 
+This example shows how to sample the value from a "temperature publisher".
+Note that a value is not sampled twice. Thus if the temperature publisher
+didn't post a new value for a given second, that second won't have a line printed.
+
+```swift
+    let timer = Timer.publish(every: 1, on: RunLoop.main, in: .default)
+    temperature
+        .sample(timer)
+        .sink { temperature in print("The temperature is \(temperature)" }
+```
+
 ## Demo
 
 [rxmarbles/sample](https://rxmarbles.com/#sample)
